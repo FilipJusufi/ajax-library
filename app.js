@@ -107,6 +107,8 @@ function loadOrders(e) {
 
   xhr.open('GET', `https://smm.nakrutka.by/api/?key=406e1ef4f7409d5feda9e618eb8833d1&action=status&order=${orderId}`, true)
 
+  xhr.setRequestHeader('Content-Type', 'application/json')
+
   xhr.onload = function() {
     if(this.status === 200) {
       const response = this.responseText
