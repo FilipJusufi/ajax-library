@@ -3,13 +3,13 @@ const button2 = document.getElementById('button2')
 const button3 = document.getElementById('button3')
 const button5 = document.getElementById('button5')
 const output = document.getElementById('output')
-const orderSelect = document.getElementById('order')
+const jokesSelect = document.getElementById('jokes')
 const spinner = '<img src="spinner.gif" width="280 height="100" style="margin-top:40px; width:100%">'
 
 button1.addEventListener('click', loadData)
 button2.addEventListener('click', loadJSONObj)
 button3.addEventListener('click', loadJSONArr)
-button5.addEventListener('click', loadOrders)
+button5.addEventListener('click', loadJokes)
 
 document.getElementById('button4').addEventListener('click', function() {
   output.innerHTML = ''
@@ -100,14 +100,13 @@ function loadJSONArr(e) {
   xhr.send()
 }
 
-function loadOrders(e) {
-  let orderId = orderSelect.options[orderSelect.selectedIndex].value
+// Load Jokes
+function loadJokes(e) {
+  let jokesCount = jokesSelect.options[jokesSelect.selectedIndex].value
 
   const xhr = new XMLHttpRequest()
 
-  xhr.open('GET', `https://smm.nakrutka.by/api/?key=406e1ef4f7409d5feda9e618eb8833d1&action=status&order=${orderId}`, true)
-
-  xhr.setRequestHeader('Content-Type', 'application/json')
+  xhr.open('GET', `http://api.icndb.com/jokes/random${jokesCount}`, true)
 
   xhr.onload = function() {
     if(this.status === 200) {
